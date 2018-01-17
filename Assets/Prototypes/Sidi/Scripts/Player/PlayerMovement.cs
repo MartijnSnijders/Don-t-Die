@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
 	float mouse_x;
 	float mouse_y;
 	bool direction;
-	 
 
 	void Awake()
 	{
