@@ -32,7 +32,7 @@ public class Screenshot : MonoBehaviour {
 		if (playerHealth.getCurrentHealth () <= 0) {
 			timer += Time.deltaTime;
 		}
-		if (timer >= 12*Time.deltaTime && shotTook == false) {
+		if (timer >= 20*Time.deltaTime && shotTook == false) {
 			takeShot = true;
 			shotTook = true;
 		}

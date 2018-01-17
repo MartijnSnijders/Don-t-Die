@@ -14,7 +14,7 @@ public class heatMap : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		interval = 10*Time.deltaTime;
+		interval = 15*Time.deltaTime;
 		transform = GetComponent<Transform> ();
 		playerHealth = GetComponent<PlayerHealth> ();
 		timer = 0.0f;
@@ -31,12 +31,11 @@ public class heatMap : MonoBehaviour {
 	void addHeat(){
 		timer = 0.0f;
 		if (playerHealth.getCurrentHealth () > 0) {
-			Instantiate (heat, transform.position, transform.rotation);
+			Instantiate (heat, transform.position, Quaternion.identity);
 			dead = true;
-		} 
-		if (dead){
-			Instantiate (deathHeat, transform.position, transform.rotation);
-			dead = false;
+		} else {
+			Instantiate (deathHeat, transform.position, Quaternion.identity);
+			this.enabled = false;
 		}
 	}
 }
