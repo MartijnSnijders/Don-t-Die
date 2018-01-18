@@ -15,6 +15,7 @@ TagManager:
   - Halbert
   - M4
   - Humanoid
+  - Inventory
   layers:
   - Default
   - TransparentFX

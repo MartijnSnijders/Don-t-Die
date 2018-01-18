@@ -64,10 +64,27 @@ public class WeaponSelection : MonoBehaviour {
         Slider.transform.localScale = Canvas.transform.GetChild(0).GetChild(0).GetChild(0).localScale;
     }
 
+
+	// show this to Bert 
+
     public int GetWeaponID ()
-    {
-        return inv.items[activeSlotId].ID;
+    {	
+		if (inv.items [activeSlotId].ID != null) {
+			
+			return inv.items [activeSlotId].ID;
+		} else {
+			return -1;
+		}
     }
 		
+	public string GetWeaponName ()
+	{
+		if (inv.items [activeSlotId].Title != null) {
+			return inv.items[activeSlotId].Title;
+		} else {
+			return "";
+		}
+
+	}
 
 }
