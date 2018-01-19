@@ -10,10 +10,11 @@ using UnityEngine;
 
 public class WeaponSelection : MonoBehaviour {
 
+	public int WeaponID;
     private Inventory inv;
     // visable slider located over the slots
     private GameObject Slider;
-    private int activeSlotId = 0;
+	private int activeSlotId; 
     private GameObject Canvas;
 
     void Start ()
@@ -23,6 +24,7 @@ public class WeaponSelection : MonoBehaviour {
         Slider = Canvas.transform.GetChild(0).GetChild(2).GetChild(0).gameObject;
         Slider.transform.position = inv.slots[activeSlotId].transform.position;
         StartCoroutine("WaitAndTransform");
+		activeSlotId = 0;
     }
     
     // This function is needed in order to transform to the first slot panel at the start of the game
@@ -67,24 +69,17 @@ public class WeaponSelection : MonoBehaviour {
 
 	// show this to Bert 
 
-    public int GetWeaponID ()
-    {	
-		if (inv.items [activeSlotId].ID != null) {
-			
-			return inv.items [activeSlotId].ID;
-		} else {
-			return -1;
-		}
-    }
 		
 	public string GetWeaponName ()
 	{
-		if (inv.items [activeSlotId].Title != null) {
-			return inv.items[activeSlotId].Title;
-		} else {
-			return "";
-		}
+		return inv.items[activeSlotId].Title;
 
 	}
 
+	public int GetWeaponID ()
+	{	
+		//int r = inv.items [activeSlotId].ID;
+		//Debug.Log("with success");
+		return inv.items [activeSlotId].ID;
+	}
 }

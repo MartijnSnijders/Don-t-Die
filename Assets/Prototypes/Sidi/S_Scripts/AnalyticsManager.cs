@@ -13,6 +13,7 @@ public class AnalyticsManager : MonoBehaviour {
 
 
 	float deathTimer = 0.0f;
+	float timer;
 	PlayerHealth playerHealth;
 	WeaponSelection WeaponSelection;
 	List<Weapon> data;
@@ -22,10 +23,16 @@ public class AnalyticsManager : MonoBehaviour {
 		WeaponSelection = Inventory.GetComponent<WeaponSelection> ();
 		data = new List<Weapon> ();
 		playerHealth = Player.GetComponent<PlayerHealth> ();
+		timer = 0.0f;
 	}
-
+		
 	void Update ()
 	{
+		timer += Time.deltaTime;
+
+		if (timer >= 4.0f) {
+			UpdateWeapons ();
+		}
 		if (playerHealth.getCurrentHealth() >= 0) {
 			deathTimer += Time.deltaTime;
 		}
@@ -33,14 +40,14 @@ public class AnalyticsManager : MonoBehaviour {
 
 
 	// Update is called once per frame
-	void LateUpdate () {
-		string weaponName = WeaponSelection.GetWeaponName () ;
-		int weaponId = WeaponSelection.GetWeaponID ();
+	void UpdateWeapons () {
+		string weaponName = WeaponSelection.GetWeaponName() ;
+		int weaponId = WeaponSelection.GetWeaponID();
 		bool found = false;
 		if( weaponId != -1){
 			for (int i = 0; i < data.Count; i++) {
 				if (data [i].getName() == weaponName) {
-					data [i].UpdateTimer (Time.deltaTime);
+					data [i].UpdateTimer (timer);
 					found = true;
 				}
 			}
@@ -52,8 +59,9 @@ public class AnalyticsManager : MonoBehaviour {
 
 		if (playerHealth.getCurrentHealth () <= 0) {
 			reportDeath ();
-			Debug.Log (data.Count);
 		}
+
+		timer = 0.0f;
 	}
 
 	void reportDeath(){

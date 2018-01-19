@@ -24,6 +24,7 @@ public class PlayerWeaponSelection : MonoBehaviour {
         weapons.Add(GameObject.FindGameObjectWithTag("M4"));      // M4
         inv = GameObject.Find ("Inventory");
 		selector = inv.GetComponent<WeaponSelection>();
+
         for (int i = 0; i < weapons.Count; i++)
         {
             weapons[i].SetActive (false);
