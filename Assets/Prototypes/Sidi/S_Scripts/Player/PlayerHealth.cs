@@ -9,10 +9,11 @@ using System.IO;
 
 public class PlayerHealth : MonoBehaviour
 {
+
+	public string killer;
+
 	float timer = 0.0f;
 	float deathTimer = 0.0f;
-
-
 	Animator anim;
 	Slider healthSlider;
 	PlayerMovement playerMovement;
@@ -25,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
 	float flashSpeed = 5f;
 	[SerializeField] Sprite [] hearts;
 	[SerializeField] Image heartImage;
-	string killer;
+
 
     void Awake ()
 	{
@@ -88,31 +89,6 @@ public class PlayerHealth : MonoBehaviour
 		} else {
 			anim.SetBool ("PlayerDead", true);
 		}
-
-		reportDeath ();	
+	
     }
-
-	void reportDeath(){
-		
-		string path = "Assets/Prototypes/Sidi/Analytics/Death.txt";
-		string path1 = "Assets/Prototypes/Sidi/Analytics/Killer.txt";
-		string path2 = "Assets/Prototypes/Sidi/Analytics/Score.txt";
-		//Report Death time
-		StreamWriter writer = new StreamWriter(path, true);
-		writer.WriteLine(string.Format("{0:N3}", deathTimer) + ",");
-		writer.Close();
-
-		//Report The killer 
-		StreamWriter writer1 = new StreamWriter(path1, true);
-		writer1.WriteLine(killer + ",");
-		writer1.Close();
-
-		//Report The Score
-		StreamWriter writer2 = new StreamWriter(path2, true);
-		writer2.WriteLine(ScoreManager.score + ",");
-		writer2.Close();
-		Debug.Log (ScoreManager.score);
-
-	}
-		
 }
